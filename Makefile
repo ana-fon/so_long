@@ -10,6 +10,8 @@ LIBFT_ARCH = $(LIBFT_PATH)/libft.a
 MLX_PATH = $(LIBS_PATH)/mlx
 MLX_ARCH = $(MLX_PATH)/libmlx_Linux.a
 
+BUILD_DIR = .build
+
 # Executável
 NAME = so_long
 
@@ -19,7 +21,7 @@ FILES = main.c game.c free.c player.c movements/check_movements.c \
 		check_map/create_map.c check_map/ft_init_map.c check_map/ft_init_map_utils.c
 SRC_PATH = src
 SRC = $(addprefix $(SRC_PATH)/, $(FILES))
-OBJS = $(SRC:.c=.o)
+OBJS = $(SRC:$(SRC_PATH)/%.c=$(BUILD_DIR)/%.o)
 
 # Compiler and flags
 CC = cc
@@ -35,7 +37,8 @@ deps:
 	@if [ ! -d "$(MLX_PATH)" ]; then $(MAKE) get_mlx; else echo "mlx folder found"; fi
 
 # COMPILE OBJS
-%.o: %.c
+$(BUILD_DIR)/%.o: $(SRC_PATH)/%.c
+	@mkdir -p $(dir $@)
 	@$(CC) -c $(CFLAGS) $< -o $@
 
 # COMPILE EXE
@@ -71,12 +74,16 @@ $(MLX_ARCH):
 
 # Limpeza de objetos
 clean:
-	rm -f $(OBJS)
-	make clean -C libs/libft
+	rm -fr $(BUILD_DIR)
+	@if [ -d "$(LIBFT_PATH)" ]; then \
+		make clean -C $(LIBFT_PATH); \
+	fi
 
 fclean: clean
 	rm -f $(NAME)
-	make fclean -C libs/libft
+	@if [ -d "$(LIBS_PATH)" ]; then \
+		rm -fr $(LIBS_PATH); \
+	fi
 
 # Recompilar do zero
 re: fclean all

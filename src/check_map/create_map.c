@@ -6,7 +6,7 @@
 /*   By: anisabel <anisabel@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 03:53:01 by anisabel          #+#    #+#             */
-/*   Updated: 2026/01/11 20:51:13 by anisabel         ###   ########.fr       */
+/*   Updated: 2026/01/13 18:04:40 by anisabel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_put_img_to_window(t_game *game, int x, int y, t_map *map)
 	char	*relative_path;
 
 	if (game->pos >= game->map->height * game->map->width)
-		return (ft_printf("ERROR!\npos exceeds size for game->img.\n\n"), 0);
+		return (ft_printf("ERROR!\nPos exceeds size for game->img.\n\n"), 0);
 	relative_path = NULL;
 	relative_path = ft_select_image(x, y, map);
 	if (!relative_path)
