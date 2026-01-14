@@ -119,5 +119,6 @@ void	ft_free(t_game *game);
 void	ft_free_img(t_game	*game);
 void	ft_free_design(t_map *map);
 int		ft_check_lines(int fd, t_map *map);
+void	free_all(int fd);
 
 #endif

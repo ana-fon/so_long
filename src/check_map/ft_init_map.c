@@ -6,7 +6,7 @@
 /*   By: anisabel <anisabel@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 00:44:02 by anisabel          #+#    #+#             */
-/*   Updated: 2026/01/13 18:04:22 by anisabel         ###   ########.fr       */
+/*   Updated: 2026/01/14 13:03:17 by anisabel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,17 @@ int	ft_init_map(t_map *map, char *file)
 	if (!ft_check_map(map, file))
 		return (0);
 	return (1);
+}
+
+void	ft_put_value(t_map *map)
+{
+	map->width = 0;
+	map->height = 0;
+	map->start_x = 0;
+	map->start_y = 0;
+	map->is_collectable = 0;
+	map->is_exit = 0;
+	map->is_player = 0;
+	map->is_floor = 0;
+	map->design = NULL;
 }
